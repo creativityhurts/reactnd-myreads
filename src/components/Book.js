@@ -9,27 +9,19 @@ class Book extends Component {
   }
 
   render() {
-    var authors = [];
     const {book} = this.props;
     const bookCover = book.imageLinks ? book.imageLinks.thumbnail : '';
-    if (book.authors) {
-      if (book.authors.length > 1) {
-        authors = book.authors.join(', ');
-      } else {
-        authors = book.authors;
-      }
-    }
     return (
       <div className="book">
         <div className="book-top">
-          <div className="book-cover" style={{ width: 128, height: 193, backgroundImage: `url(${bookCover})` }}></div>
+          <div className="book-cover" style={{backgroundImage: `url(${bookCover})` }}></div>
           <ShelfChanger
             shelfChanger={this.props.shelfChanger}
             book={book}
           />
         </div>
         <div className="book-title">{book.title}</div>
-        <div className="book-authors">{authors}</div>
+        <div className="book-authors">{book.authors ? book.authors.join(', '): ''}</div>
       </div>
     );
   }

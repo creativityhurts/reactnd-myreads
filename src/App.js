@@ -23,7 +23,12 @@ class BooksApp extends React.Component {
           let books = response;
           if (books) {
             books = books.map(book => {
-              return book;
+              const bookAPI = booksAPI.find(bookAPI => bookAPI.id === book.id);
+              if (bookAPI) {
+                return bookAPI;
+              } else {
+                return book;
+              }
             });
             if (this.state.books !== books) {
               this.setState({ books });
